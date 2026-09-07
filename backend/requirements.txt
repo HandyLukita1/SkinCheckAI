@@ -1,0 +1,9 @@
+flask
+flask-cors
+flask-limiter
+flask-talisman
+tensorflow
+numpy
+pillow
+python-magic-bin
+gunicorn
