@@ -104,28 +104,22 @@ export default function Scan() {
   };
 
   return (
-    <div className="w-full flex-grow bg-gradient-to-r from-[#58C8FF] to-[#27FE89] px-6 py-10 md:px-12 md:py-16 xl:px-28 xl:py-20 flex flex-col items-center justify-center">
-      <div className="w-full max-w-lg md:max-w-xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-3xl p-6 md:p-10">        
-        
-        <div className="flex flex-col justify-center items-center text-white gap-1 mb-6">
-            <h2 className="font-bold text-center text-2xl md:text-3xl xl:text-4xl">
-              Scan Your Skin
-            </h2>
-            <p className="text-xs md:text-base text-white/90">
-              Upload your skin condition sample image
-            </p>
+    <div className="scan-page">
+      <div className="scan-card-wrapper">        
+        <div className="scan-header">
+            <h2>Scan Your Skin</h2>
+            <p>Upload your skin condition sample image</p>
         </div>
         
         {!preview ? (
           <form 
-            className="relative"
             onDragEnter={handleDrag} 
             onSubmit={(e) => e.preventDefault()}
           >
             <input 
               ref={inputRef}
               type="file" 
-              className="hidden" 
+              className="hidden-input" 
               accept="image/*"
               onChange={handleChange}
             />
@@ -136,43 +130,37 @@ export default function Scan() {
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
               onDrop={handleDrop}
-              className={`
-                flex flex-col items-center justify-center p-8 md:p-12 border-2 border-dashed rounded-2xl transition-all duration-200 
-                ${isRateLimited ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
-                ${dragActive 
-                  ? "border-white bg-white/40 scale-[1.02]" 
-                  : "border-white/50 bg-white/10 hover:bg-white/20 hover:border-white"} 
-              `}
+              className={`dropzone-box ${isRateLimited ? "rate-limited" : ""} ${dragActive ? "drag-active" : ""}`}
             > 
-              <div className="mb-4 text-white pointer-events-none">
-                <svg className="w-12 h-12 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="upload-icon-container">
+                <svg className="upload-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                 </svg>
               </div>
               
-              <p className="text-sm md:text-base font-semibold text-white mb-1 text-center pointer-events-none">
+              <p className="dropzone-title">
                 {isRateLimited ? "Please wait a moment..." : "Choose a file or drag & drop it here."}
               </p>
-              <p className="text-xs md:text-sm text-white/70 text-center pointer-events-none">
+              <p className="dropzone-subtitle">
                 .jpg, .png, or .jpeg formats only. Max {MAX_FILE_SIZE_MB}MB.
               </p>
             </div>
           </form>
         ) : (
-          <div className="flex flex-col items-center">
-            <div className="relative w-full h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg border border-white/30 bg-black/20 flex items-center justify-center mb-6">
-              <img src={preview} alt="Preview" className="w-full h-full object-contain" />
+          <div className="preview-container">
+            <div className="preview-image-box">
+              <img src={preview} alt="Preview" className="preview-img" />
               
               <button 
                 onClick={resetScan}
-                className="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white rounded-full transition-all shadow-md group"
+                className="delete-btn"
                 title="Delete Image"
               >
                 <img 
                   src={trashIcon}
                   alt="Delete"
                   draggable="false" 
-                  className="w-5 h-5 object-contain select-none" 
+                  className="trash-svg" 
                 />
               </button>
             </div>
@@ -180,17 +168,13 @@ export default function Scan() {
             <button 
               onClick={handleUpload} 
               disabled={loading || isRateLimited}
-              className={`w-full py-3 px-6 rounded-xl font-semibold text-base md:text-lg shadow-lg transition-all 
-                ${loading || isRateLimited
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                  : 'bg-white text-[#4D93FF] hover:bg-gray-100 active:scale-95'
-                }`}
+              className={`action-btn ${loading || isRateLimited ? 'disabled-btn' : ''}`}
             >
               {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5 text-[#4D93FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <span className="spinner-text">
+                  <svg className="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="spinner-opacity" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="spinner-path" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                   Analyzing...
                 </span>
@@ -198,7 +182,7 @@ export default function Scan() {
             </button>
             
             {isRateLimited && (
-              <p className="text-red-100 text-xs mt-2 font-medium bg-red-500/20 px-3 py-1 rounded-full">
+              <p className="rate-limit-msg">
                 Too many attempts. Please wait 1 minute.
               </p>
             )}
@@ -206,16 +190,10 @@ export default function Scan() {
         )}
 
         {result && (
-          <div className="mt-6 p-5 rounded-2xl border border-white/30 text-center backdrop-blur-sm bg-white/10 text-white">
-            <p className="text-xs md:text-sm font-semibold mb-1 uppercase tracking-wider text-white/80">
-              Diagnosis Result
-            </p>
-
-            <h3 className="text-2xl md:text-3xl font-extrabold mb-2">
-              {result.label}
-            </h3> 
-
-            <div className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs md:text-sm tracking-wide font-medium text-white">
+          <div className="result-box">
+            <p className="result-title">Diagnosis Result</p>
+            <h3 className="result-label">{result.label}</h3> 
+            <div className="result-badge">
               Confidence: {result.confidence}
             </div>
           </div>

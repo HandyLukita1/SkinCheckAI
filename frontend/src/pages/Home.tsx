@@ -5,126 +5,157 @@ import asset2 from '../assets/Asset-02.svg';
 import asset3 from '../assets/Asset-04.svg';
 import asset4 from '../assets/Asset-03.svg';
 
-
 export default function Home() {
   return (
-    <div className="min-h-[70vh] xl:min-h-[88vh] flex flex-col justify-center">
+    <div style={{ minHeight: '88vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor: '#f8fbff', overflowX: 'hidden' }}>
       
-      {/* ---- COVER --- */}
-      <div className='w-full bg-white px-8 py-5 md:px-16 xl:px-16'>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 my-16 md:my-14 xl:my-12 items-center max-w-7xl mx-auto xl:py-5">
+      {/* ---- COVER / HERO SECTION --- */}
+      <div style={{ width: '100%', backgroundColor: '#ffffff', padding: '4rem 2rem', borderBottom: '1px solid #e2e8f0' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', margin: '0 auto', maxWidth: '1200px', alignItems: 'center' }}>
           
-          <div className="text-left order-2 md:order-2">
-            <h1 className="text-3xl md:text-[2.5rem] xl:text-6xl font-extrabold text-[#1A3052] mb-1 md:mb-2 md:tracking-tight xl:tracking-normal md:leading-[1.1] xl:leading-[1.15]">
-              Detect Skin Conditions <br/>
-              <span>in One Click</span> 
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ display: 'inline-block', backgroundColor: '#e0f2fe', color: '#0284c7', padding: '0.4rem 1rem', borderRadius: '9999px', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1.2rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              AI-Powered Dermatology
+            </div>
+            <h1 style={{ fontSize: '3rem', fontWeight: 900, color: '#1A3052', marginBottom: '1rem', lineHeight: 1.15 }}>
+              Detect Skin Conditions <br />
+              <span style={{ background: 'linear-gradient(to right, #38bdf8, #22c55e)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>in One Click</span> 
             </h1>
-            <p className="text-md md:text-lg xl:text-[1.3rem] text-[#4D93FF] mb-4 md:mb-5 xl:mb-6 leading-relaxed max-w-lg">
-              Affordable AI-powered dermatology screening.
+            <p style={{ fontSize: '1.25rem', color: '#64748b', marginBottom: '2rem', lineHeight: 1.6, maxWidth: '500px' }}>
+              Advanced, fast, and secure preliminary skin screening right from your device.
             </p>
 
-            <div className="flex justify-start">
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
               <Link 
                 to="/scan"
-                className="group bg-gradient-to-r from-[#67C3F3] to-[#27FE89] hover:bg-none hover:text-[#4D93FF] hover:border-[#36D67F] hover:border-[1px] text-md md:text-xl xl:text-[1.3rem] font-semibold py-2 px-6 md:py-[0.6rem] xl:py-3 xl:px-7 rounded-full transition-transform hover:scale-105 active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #38bdf8 0%, #22c55e 100%)',
+                  color: '#ffffff',
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  padding: '0.85rem 2.2rem',
+                  borderRadius: '9999px',
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 20px rgba(34, 197, 94, 0.2)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  display: 'inline-block'
+                }}
               >
-                <span className='text-[#f7fbff] group-hover:bg-gradient-to-r group-hover:from-[#67C3F3] group-hover:to-[#27FE89] group-hover:bg-clip-text group-hover:text-transparent'>Start Now</span>
+                Start Scanning Now
               </Link>
             </div>
           </div>
 
-          <div className="flex justify-center md:justify-end order-1 md:order-2">
-            <img 
-              src={coverImage}
-              draggable="false" 
-              className="w-full max-w-sm md:max-w-md xl:max-w-full object-contain animate-fade-in-up select-none" 
-            />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', maxWidth: '480px', background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', borderRadius: '2rem', padding: '2rem', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.05)' }}>
+              <img 
+                src={coverImage}
+                draggable="false" 
+                style={{ width: '100%', height: 'auto', objectFit: 'contain', userSelect: 'none', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))' }} 
+                alt="Cover"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* --- SECTION 1 --- */}
-      <div className="w-full bg-gradient-to-br from-[#58C8FF] to-[#4D93FF] px-10 pr-8 md:px-16 xl:px-20 py-16 xl:py-36">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-center mx-auto">
-          <div className="flex justify-center md:justify-end order-1 md:order-1">
+      {/* --- MIDDLE SECTION (EARLY DETECTION) --- */}
+      <div style={{ width: '100%', background: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)', padding: '6rem 2rem', color: '#ffffff' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
+          
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <img 
               src={asset1}
               draggable="false" 
-              className="w-full max-w-sm md:max-w-md xl:max-w-3xl object-contain animate-fade-in-up select-none" 
+              style={{ width: '100%', maxWidth: '450px', objectFit: 'contain', userSelect: 'none', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }} 
+              alt="Early Detection"
             />
           </div>
           
-          <div className="text-left text-white order-2 md:order-2">
-            <h1 className="text-2xl md:text-3xl xl:text-[2.75rem] font-bold py-4 xl:py-6 tracking-normal leading-tight">
+          <div style={{ textAlign: 'left' }}>
+            <h2 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '2rem', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
               Early Skin Detection Matters
-            </h1>
+            </h2>
             
-            <div className='mb-4'>
-              <p className='font-semibold text-base md:text-xl xl:text-[1.75rem] py-1 md:py-2'>
+            <div style={{ marginBottom: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              <h3 style={{ fontWeight: 700, fontSize: '1.4rem', margin: 0, color: '#e0f2fe' }}>
                 Catch Abnormalities Early
-              </p>
-              <p className='max-w-xs md:max-w-sm xl:max-w-xl font-normal text-sm md:text-lg xl:text-xl'>
-                Identifying skin irregularities early allows for prompt medical evaluation and peace of mind.
+              </h3>
+              <p style={{ fontSize: '1.04rem', margin: 0, opacity: 0.9, lineHeight: 1.5, maxWidth: '500px' }}>
+                Identifying skin irregularities early allows for prompt medical evaluation and ultimate peace of mind.
               </p>
             </div>
             
-            <div className='mb-4'>
-              <p className='font-semibold text-base md:text-xl xl:text-[1.75rem] py-1 md:py-2'>
+            <div style={{ marginBottom: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              <h3 style={{ fontWeight: 700, fontSize: '1.4rem', margin: 0, color: '#e0f2fe' }}>
                 Prevent Complications
-              </p>
-              <p className='max-w-xs md:max-w-sm xl:max-w-xl font-normal text-sm md:text-lg xl:text-xl'>
-                Timely monitoring prevents minor dermatological concerns from escalating.
+              </h3>
+              <p style={{ fontSize: '1.05rem', margin: 0, opacity: 0.9, lineHeight: 1.5, maxWidth: '500px' }}>
+                Timely monitoring prevents minor dermatological concerns from escalating into major issues.
               </p>
             </div>
             
-            <div className='mb-4'>
-              <p className='font-semibold text-base md:text-xl xl:text-[1.75rem] py-1 md:py-2'>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              <h3 style={{ fontWeight: 700, fontSize: '1.4rem', margin: 0, color: '#e0f2fe' }}>
                 Empower Your Health
-              </p>
-              <p className='max-w-xs md:max-w-sm xl:max-w-xl font-normal text-sm md:text-lg xl:text-xl'>
-                Quick preliminary screening gives you actionable insights before visiting a specialist.
+              </h3>
+              <p style={{ fontSize: '1.05rem', margin: 0, opacity: 0.9, lineHeight: 1.5, maxWidth: '500px' }}>
+                Quick screening gives you actionable insights before consulting to a professional specialist.
               </p>
             </div>
           </div>
         </div>
       </div>
       
-      {/* --- SECTION 2 --- */}
-      <div className='w-full bg-white px-8 md:px-16 py-16 md:py-28 xl:py-40'>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7 xl:gap-10 text-left max-w-7xl mx-auto w-full">
+      {/* --- BOTTOM SECTION (FEATURES CARDS) --- */}
+      <div style={{ width: '100%', backgroundColor: '#ffffff', padding: '6rem 2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: '#1e293b', marginBottom: '0.75rem' }}>
+            Powered by Advanced Technology
+          </h2>
+          <p style={{ fontSize: '1.1rem', color: '#64748b' }}>
+            Built for precision, speed, and safety.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
           
-          <div className="flex md:flex-col items-center px-4 py-3 md:pt-8 md:pb-10 gap-3 xl:pt-10 xl:pb-14 xl:gap-4 bg-[linear-gradient(to_bottom,#FFFFFF_0%,#F8FDFF_75%,#F4FBFF_87%,#E9F8FF_100%)] rounded-2xl md:rounded-[2rem] xl:rounded-[3rem] shadow-[0_4px_4px_rgba(77,147,255,0.15)] md:shadow-[0_5px_7px_rgba(77,147,255,0.2)]">
-            <img 
-              src={asset2}
-              draggable="false" 
-              className="max-w-24 md:max-w-36 xl:max-w-48 object-contain animate-fade-in-up select-none" 
-            />
-            <p className="max-w-48 md:max-w-52 xl:max-w-72 text-sm md:text-lg xl:text-2xl text-[#1A3052] font-semibold">
-              Built using MobileNetV2 Deep Learning Transfer Learning
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '3rem 2rem', background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8FDFF 100%)', borderRadius: '2rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(77,147,255,0.08)', transition: 'transform 0.3s ease' }}>
+            <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '50%', marginBottom: '1.5rem' }}>
+              <img src={asset2} draggable="false" style={{ width: '64px', height: '64px', objectFit: 'contain', userSelect: 'none' }} alt="Feature 1" />
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A3052', marginBottom: '0.75rem' }}>
+              Modern Tech Stack
+            </h3>
+            <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.6 }}>
+              Built using Vite and powerful Machine Learning Tools like TensorFlow along with MobileNetV2.
             </p>
           </div>
 
-          <div className="flex md:flex-col items-center px-4 py-3 md:pt-8 md:pb-10 gap-3 xl:pt-10 xl:pb-14 xl:gap-4 bg-[linear-gradient(to_bottom,#FFFFFF_0%,#F8FDFF_75%,#F4FBFF_87%,#E9F8FF_100%)] rounded-2xl md:rounded-[2rem] xl:rounded-[3rem] shadow-[0_4px_4px_rgba(77,147,255,0.15)] md:shadow-[0_5px_7px_rgba(77,147,255,0.2)]">
-            <img 
-              src={asset3}
-              draggable="false" 
-              className="max-w-24 md:max-w-36 xl:max-w-48 object-contain animate-fade-in-up select-none" 
-            />
-            <p className="max-w-48 md:max-w-52 xl:max-w-72 text-sm md:text-lg xl:text-2xl text-[#1A3052] font-semibold">
-              Detect Skin Risks in Seconds
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '3rem 2rem', background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8FDFF 100%)', borderRadius: '2rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(77,147,255,0.08)', transition: 'transform 0.3s ease' }}>
+            <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '50%', marginBottom: '1.5rem' }}>
+              <img src={asset3} draggable="false" style={{ width: '64px', height: '64px', objectFit: 'contain', userSelect: 'none' }} alt="Feature 2" />
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A3052', marginBottom: '0.75rem' }}>
+              Instant Analysis
+            </h3>
+            <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.6 }}>
+              Detect skin risks and potential irregularities in mere seconds with optimized image processing.
             </p>
           </div>
           
-          <div className="flex md:flex-col items-center px-4 py-3 md:pt-8 md:pb-10 gap-3 xl:pt-10 xl:pb-14 xl:gap-4 bg-[linear-gradient(to_bottom,#FFFFFF_0%,#F8FDFF_75%,#F4FBFF_87%,#E9F8FF_100%)] rounded-2xl md:rounded-[2rem] xl:rounded-[3rem] shadow-[0_4px_4px_rgba(77,147,255,0.15)] md:shadow-[0_5px_7px_rgba(77,147,255,0.2)]">
-            <img 
-              src={asset4}
-              draggable="false" 
-              className="max-w-24 md:max-w-36 xl:max-w-48 object-contain animate-fade-in-up select-none" 
-            />
-            <p className="max-w-48 md:max-w-52 xl:max-w-72 text-sm md:text-lg xl:text-2xl text-[#1A3052] font-semibold">
-              Fast, Accurate, and Secure Screening
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '3rem 2rem', background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8FDFF 100%)', borderRadius: '2rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(77,147,255,0.08)', transition: 'transform 0.3s ease' }}>
+            <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '50%', marginBottom: '1.5rem' }}>
+              <img src={asset4} draggable="false" style={{ width: '64px', height: '64px', objectFit: 'contain', userSelect: 'none' }} alt="Feature 3" />
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1A3052', marginBottom: '0.75rem' }}>
+              Secure & Private
+            </h3>
+            <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.6 }}>
+              Fast, accurate, and secure screening designed to prioritize user data safety and confidentiality.
             </p>
           </div>
+
         </div>
       </div>
     </div>
