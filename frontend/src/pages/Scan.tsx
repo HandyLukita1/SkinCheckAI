@@ -201,7 +201,13 @@ export default function Scan() {
                 High-risk mole detected. Please consult a professional dermatologist.
               </p>
             )}
+            {result.label === 'Normal Mole' && (
+              <p style={{ color: '#10b981', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 500 }}>
+                Benign mole appearance detected. Monitor for any future changes.
+              </p>
+            )}
           </div>
+          
         )}
 
       </div>

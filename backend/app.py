@@ -41,7 +41,8 @@ limiter = Limiter(
 # Define your classes here in the EXACT alphabetical order that 
 # flow_from_directory assigns them (matching your dataset subfolder names).
 # Example folders: 'abnormal_mole', 'normal', 'rash'
-CLASS_LABELS = ['Abnormal Mole', 'Normal Skin', 'Rash / Abnormal Skin']
+# Update to include your 4 classes in alphabetical order
+CLASS_LABELS = ['Abnormal Mole', 'Normal Skin', 'Normal Mole', 'Rash / Abnormal Skin']
 
 print("Loading AI model")
 try:

@@ -251,3 +251,17 @@
   font-size: 0.85rem;
   font-weight: 500;
 }
+
+.high-risk-card {
+  border: 2px solid #ef4444;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  text-align: center;
+  transition: all 0.3s ease;
+}
