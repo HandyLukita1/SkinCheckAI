@@ -38,6 +38,11 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
+# Define your classes here in the EXACT alphabetical order that 
+# flow_from_directory assigns them (matching your dataset subfolder names).
+# Example folders: 'abnormal_mole', 'normal', 'rash'
+CLASS_LABELS = ['Abnormal Mole', 'Normal Skin', 'Rash / Abnormal Skin']
+
 print("Loading AI model")
 try:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -109,20 +114,25 @@ def predict():
         image = Image.open(file_stream)
         processed_image = prepare_image(image)
         
+        # Prediction returns an array of probabilities for all classes
         prediction = model.predict(processed_image)
-        score = float(prediction[0][0])
-    
-        if score > 0.5:
-            label = "Rash / Abnormal Skin"
-            confidence = score * 100 
+        
+        # Get the index of the highest probability class
+        predicted_class_index = np.argmax(prediction[0])
+        confidence_score = float(prediction[0][predicted_class_index])
+        
+        # Map index to label string
+        if predicted_class_index < len(CLASS_LABELS):
+            label = CLASS_LABELS[predicted_class_index]
         else:
-            label = "Normal Skin"
-            confidence = (1 - score) * 100
+            label = "Unknown Condition"
+            
+        confidence_percentage = confidence_score * 100 
         
         return jsonify({
             'label': label,
-            'confidence': f"{confidence:.2f}%",
-            'raw_score': score,
+            'confidence': f"{confidence_percentage:.2f}%",
+            'raw_score': confidence_score,
             'message': 'Analysis successful'
         })
         

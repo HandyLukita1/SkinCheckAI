@@ -190,12 +190,17 @@ export default function Scan() {
         )}
 
         {result && (
-          <div className="result-box">
+          <div className={`result-box ${result.label === 'Abnormal Mole' ? 'high-risk-card' : ''}`}>
             <p className="result-title">Diagnosis Result</p>
             <h3 className="result-label">{result.label}</h3> 
             <div className="result-badge">
               Confidence: {result.confidence}
             </div>
+            {result.label === 'Abnormal Mole' && (
+              <p style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 500 }}>
+                High-risk mole detected. Please consult a professional dermatologist.
+              </p>
+            )}
           </div>
         )}
 
