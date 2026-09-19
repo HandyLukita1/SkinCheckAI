@@ -103,6 +103,8 @@ export default function Scan() {
     setResult(null);
   };
 
+  // Content of  scanner
+
   return (
     <div className="scan-page">
       <div className="scan-card-wrapper">        
@@ -213,7 +215,7 @@ export default function Scan() {
                   marginTop: '0.5rem', 
                   fontWeight: 500 }
                 }>
-                Benign mole appearance detected. Monitor for any future changes.
+                Normal/Benign mole appearance detected. Monitor for any future changes.
               </p>
             )}
           </div>

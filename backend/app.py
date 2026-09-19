@@ -38,10 +38,8 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
-# Define your classes here in the EXACT alphabetical order that 
 # flow_from_directory assigns them (matching your dataset subfolder names).
-# Example folders: 'abnormal_mole', 'normal', 'rash'
-# Update to include your 4 classes in alphabetical order
+# Update to include 4 classes in alphabetical order
 CLASS_LABELS = ['Abnormal Mole', 'Normal Skin', 'Normal Mole', 'Rash / Abnormal Skin']
 
 print("Loading AI model")
@@ -115,14 +113,14 @@ def predict():
         image = Image.open(file_stream)
         processed_image = prepare_image(image)
         
-        # Prediction returns an array of probabilities for all classes
+        # prediction returns an array of probabilities for all classes
         prediction = model.predict(processed_image)
         
-        # Get the index of the highest probability class
+        # get the index of the highest probability class
         predicted_class_index = np.argmax(prediction[0])
         confidence_score = float(prediction[0][predicted_class_index])
         
-        # Map index to label string
+        # map index to label string
         if predicted_class_index < len(CLASS_LABELS):
             label = CLASS_LABELS[predicted_class_index]
         else:

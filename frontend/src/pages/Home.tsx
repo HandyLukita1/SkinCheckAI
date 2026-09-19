@@ -15,7 +15,7 @@ export default function Home() {
         backgroundColor: '#f8fbff', 
         overflowX: 'hidden' }}>
       
-      {/* ---- COVER SECTION --- */}
+      {/* - COVER SECTION - */}
       <div style={
         { width: '100%', 
           backgroundColor: '#ffffff', 
@@ -125,7 +125,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- MIDDLE SECTION (EARLY DETECTION) --- */}
+      {/* - MIDDLE SECTION (EARLY DETECTION) - */}
       <div style={
         { width: '100%', 
           background: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)', 
@@ -247,7 +247,7 @@ export default function Home() {
         </div>
       </div>
       
-      {/* --- BOTTOM SECTION --- */}
+      {/* - BOTTOM SECTION - */}
       <div style={
         { width: '100%', 
         backgroundColor: '#ffffff', 
