@@ -14,7 +14,7 @@ if not os.path.exists(DATASET_DIR):
     print(f"ERROR: Dir '{DATASET_DIR}' not found!")
     exit()
 
-# Automatically count the number of classes based on subfolders in the dataset directory
+# count the number of classes on subfolders in the dataset directory
 class_folders = [f for f in os.listdir(DATASET_DIR) if os.path.isdir(os.path.join(DATASET_DIR, f))]
 NUM_CLASSES = len(class_folders)
 print(f"Detected {NUM_CLASSES} classes: {class_folders}")
@@ -23,7 +23,7 @@ if NUM_CLASSES < 2:
     print("ERROR: You need at least 2 class subfolders inside your dataset directory!")
     exit()
 
-# Data Augmentation & Split
+# data augmentation & split
 train_datagen = ImageDataGenerator(
     rescale=1./255,
     rotation_range=20,
@@ -35,7 +35,7 @@ train_generator = train_datagen.flow_from_directory(
     DATASET_DIR,
     target_size=(IMG_WIDTH, IMG_HEIGHT),
     batch_size=BATCH_SIZE,
-    class_mode='categorical', # Changed to categorical for multi-class
+    class_mode='categorical', 
     subset='training'
 )
 
@@ -43,26 +43,26 @@ validation_generator = train_datagen.flow_from_directory(
     DATASET_DIR,
     target_size=(IMG_WIDTH, IMG_HEIGHT),
     batch_size=BATCH_SIZE,
-    class_mode='categorical', # Changed to categorical for multi-class
+    class_mode='categorical', 
     subset='validation'
 )
 
-# Build Model via Transfer Learning
+# build Model via Transfer Learning
 base_model = MobileNetV2(input_shape=(IMG_WIDTH, IMG_HEIGHT, 3), include_top=False, weights='imagenet')
 base_model.trainable = False
 
 x = base_model.output
 x = GlobalAveragePooling2D()(x)
 x = Dense(128, activation='relu')(x)
-# Output layer updated with NUM_CLASSES and softmax activation for multi-class prediction
+# output layer updated with NUM_CLASSES and activation for multi-class prediction
 output = Dense(NUM_CLASSES, activation='softmax')(x)
 
 model = Model(inputs=base_model.input, outputs=output)
 
-# Compiled with categorical_crossentropy instead of binary_crossentropy
+# compiled with categorical_crossentropy 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-# Training
+# training
 print("Training SkinCheck Model with Abnormal Mole category...")
 model.fit(
     train_generator,
